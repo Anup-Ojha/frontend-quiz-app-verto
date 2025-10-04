@@ -1,0 +1,33 @@
+<div class="quiz-container" *ngIf="questions.length > 0">
+
+  <div class="timer">
+    Time left: {{ timer }}s
+  </div>
+
+  <div class="question-card">
+    <h3>Question {{ currentIndex + 1 }} of {{ questions.length }}</h3>
+    <p>{{ questions[currentIndex].text }}</p>
+
+    <div class="options">
+      <button *ngFor="let key of ['A','B','C','D']"
+              [class.selected]="isSelected(questions[currentIndex].id, key)"
+              (click)="selectAnswer(questions[currentIndex].id, key)">
+        {{ key }}. {{ questions[currentIndex].options[key] }}
+      </button>
+    </div>
+
+    <div class="controls">
+      <button 
+    (click)="nextQuestion()" 
+    [disabled]="!isAnswerSelected(currentIndex)">
+    {{ isLastQuestion ? 'Submit Quiz' : 'Next Question' }}
+      </button>
+</div>
+
+  </div>
+
+</div>
+
+<div *ngIf="questions.length === 0">
+  Loading quiz...
+</div>

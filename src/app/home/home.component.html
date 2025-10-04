@@ -1,0 +1,22 @@
+<div class="container">
+  <header>
+    <h1>Verto Quiz Application</h1>
+    <p>Test your knowledge across various topics!</p>
+  </header>
+
+  <section class="topics-section">
+    <h2>Available Topics</h2>
+    <div class="topics-grid">
+      <!-- Angular *ngFor loop for topics -->
+      <div class="topic-card" *ngFor="let topic of topics" (click)="startQuiz(topic)">
+        <h3>{{ topic }}</h3>
+        <p>Click to start the quiz</p>
+        <button class="start-btn">Start Quiz</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Verto Quiz App. All rights reserved.</p>
+  </footer>
+</div>

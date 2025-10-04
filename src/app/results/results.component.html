@@ -1,0 +1,44 @@
+<div class="result-container">
+  <h2>Quiz Results - {{ topic }}</h2>
+
+  <div class="score-bar-container">
+    <div class="score-label">Score: {{ percentage | number:'1.0-0' }}%</div>
+    <div class="score-bar">
+      <div class="score-fill" [style.width]="percentage + '%'"></div>
+    </div>
+  </div>
+
+  <p class="summary">Score: {{ score }} / {{ total }}</p>
+
+  <h3>Answer Review</h3>
+  <div class="answers">
+    <div *ngFor="let ans of answers" class="answer-card" [ngClass]="{'correct': ans.isCorrect, 'wrong': !ans.isCorrect}">
+      <div class="question-text">{{ ans.questionText }}</div>
+      
+      <div class="options">
+        <div *ngFor="let key of ['A','B','C','D']" 
+             [ngClass]="{
+               'option': true,
+               'correct-option': key === ans.correctAnswer,
+               'wrong-option': key === ans.answer_key && !ans.isCorrect
+             }">
+          <b>{{ key }}.</b> {{ ans.options[key] }}
+        </div>
+      </div>
+
+      <div class="answer-detail">
+        <span class="label">Your Answer:</span>
+        <span [ngClass]="{'correct-text': ans.isCorrect, 'wrong-text': !ans.isCorrect}">
+          {{ ans.answer_key || 'Not Attempted' }}
+        </span>
+      </div>
+
+      <div *ngIf="!ans.isCorrect" class="answer-detail">
+        <span class="label">Correct Answer:</span>
+        <span class="correct-text">{{ ans.correctAnswer }}</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="home-btn" (click)="goHome()">🏠 Go Home</button>
+</div>
