@@ -60,7 +60,6 @@ export class QuizComponent implements OnInit {
     });
   }
 
-  // Automatically move to next question or submit quiz when time is up
   autoNextOrSubmit() {
     if (this.currentIndex < this.questions.length - 1) {
       this.currentIndex++;

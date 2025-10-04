@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Full Stact Quiz Application';
+  title = 'Full Stack Quiz Application';
 }

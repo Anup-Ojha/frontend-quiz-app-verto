@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { QuizService } from '../services/quiz.service';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   topics: string[] = [];
 
-  constructor(private http: HttpClient, private router:Router) {}
+  constructor( private router:Router,private quizService:QuizService) {}
 
   ngOnInit(): void {
-    this.http.get<{topics: string[]}>('http://localhost:8000/topics')
+    this.quizService.getTopics()
       .subscribe(response => {
         this.topics = response.topics;
       });
